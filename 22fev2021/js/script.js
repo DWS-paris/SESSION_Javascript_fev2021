@@ -28,7 +28,7 @@ Créer une fonction pour exécuter une requête ASYNC
                 // Tester le paramêtre id
                 id === null
                 ? displayPosts('#postList', jsonData)
-                : console.log(jsonData)
+                : displaySinglePost('#mainContent', jsonData)
             }
             else{
                 console.log(type)
@@ -74,6 +74,18 @@ Créer une fonction pour capter le click sur les balise ".postLink"
                 getData('posts', event.target.getAttribute('href'));
             })
         }
+    }
+//
+
+/* 
+Créer une fonction pour afficher le contenu d'un article
+*/
+    const displaySinglePost = ( htmlTag, data ) => {
+        document.querySelector(htmlTag).innerHTML = `
+            <h1>${data.title}</h1>
+            <p>${data.content}</p>
+            <p>Par ${data.author}</p>
+        `;
     }
 //
 
