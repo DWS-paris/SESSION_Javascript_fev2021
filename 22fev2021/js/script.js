@@ -5,7 +5,7 @@ Créer une fonction pour exécuter une requête ASYNC
         // Définir le endpoint
         let endpoint = null;
 
-        id === null
+        id === null 
         ? endpoint = type
         : endpoint = `${type}/${id}`;
 
@@ -33,6 +33,38 @@ Créer une fonction pour exécuter une requête ASYNC
             else{
                 console.log(type)
             }
+        })
+        .catch( error => {
+            console.log(error)
+        });
+    }
+//
+
+/* 
+Créer une fonction pour utiliser la méthode HTTP POST
+*/
+    const postData = (endpoint, data) => {
+        // Mise en place d'une fonction Fetch en POST
+        fetch(`http://localhost:3000/${endpoint}`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then( reponse => {
+            // Vérifier l'état de la réponse
+            if( reponse.ok === false ){
+                // Afficher l'erreur dans la console
+                console.log(reponse)
+            }
+            else{
+                // Extraire les données JSON de la réponse
+                return reponse.json()
+            }
+        })
+        .then( jsonData => {
+            console.log(jsonData)
         })
         .catch( error => {
             console.log(error)
@@ -91,10 +123,37 @@ Créer une fonction pour afficher le contenu d'un article
 
 
 /* 
+Créer une fonction pour capter le submit du formulaire
+*/
+    const getFormSubmit = (htmlTag) => {
+        document.querySelector(htmlTag).addEventListener('submit', (event) => {
+            // Bloquer le comportement par défaut du formulaire
+            event.preventDefault();
+
+            // TODO: vérifier les champs du formulaire
+
+            // Créer un objet à envoyer dans le body de la requête
+            const bodyData = {
+                title: document.querySelector('[name="title"]').value,
+                content: document.querySelector('[name="content"]').value,
+                author: 'Julien'
+            }
+
+            // Utiliser la fonction postData pour ajouter un nouvel article dans la BDD
+            postData('posts', bodyData);
+        })
+    }
+//
+
+
+/* 
 Lancer l'interface
 */
     document.addEventListener('DOMContentLoaded', () => {
         // Lancer la requête HTTP GET
         getData('posts');
+
+        // Capter la soumission du formulaire
+        getFormSubmit('#addPost form');
     })
 //
