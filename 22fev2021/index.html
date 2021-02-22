@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
         <link rel="stylesheet" href="./css/style.css">
 
         <title>Utilisation d'une API</title>
@@ -25,15 +25,19 @@
             <section id="mainContent"></section>
 
             <section id="addPost">
-                <form action="#">
+
+                <form action="#" method="POST">
                     <label for="title">Titre</label>
                     <input type="text" name="title" required minlength="2">
 
                     <label for="content">Contenu</label>
                     <textarea name="content" required minlength="5"></textarea>
 
+                    <input type="number" name="post-id" hidden disabled>
+
                     <button type="submit">Ajouter</button>
                 </form>
+
             </section>
         </main>
 
