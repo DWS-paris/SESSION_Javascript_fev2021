@@ -1,10 +1,16 @@
 {
   "posts": [
     {
-      "title": "Le super titre de mon article",
-      "content": "qsfqsqsfsgq",
+      "title": "Salut <em>Angular</em>",
+      "content": "qsgrdrthdftdfyfdgyjfghj",
       "author": "Julien",
-      "id": 1
+      "id": 2
+    },
+    {
+      "title": "Festival des Maudits Films",
+      "content": "zrsdfsdfsdsd.  fdgsdghqsFXC qdvqsdv ",
+      "author": "Julien",
+      "id": 3
     }
   ],
   "comments": [],

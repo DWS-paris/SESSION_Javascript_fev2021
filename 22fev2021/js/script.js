@@ -67,6 +67,9 @@ Créer une fonction pour utiliser la méthode HTTP POST
             // Réinitialiser le formulaire
             resetForm();
 
+            // Recharger le contenu de l'API
+            getData('posts');
+
             console.log(jsonData)
         })
         .catch( error => {
@@ -101,7 +104,10 @@ Créer une fonction pour utiliser la méthode HTTP PUT
         .then( jsonData => {
             // Réinitialiser le formulaire
             resetForm();
-            
+
+            // Recharger le contenu de l'API
+            getData('posts');
+
             console.log(jsonData)
         })
         .catch( error => {
@@ -130,6 +136,9 @@ Créer une fonction pour utiliser la méthode HTTP DELETE
             }
         })
         .then( jsonData => {
+            // Recharger le contenu de l'API
+            getData('posts');
+
             console.log(jsonData)
         })
         .catch( error => {
@@ -142,6 +151,9 @@ Créer une fonction pour utiliser la méthode HTTP DELETE
 Créer une fonction pour afficher la liste d'articles
 */
     const displayPosts = ( htmlTag, data ) => {
+        // Réinitialiser la liste d'article
+        document.querySelector(htmlTag).innerHTML = '';
+
         // Faire une boucle sur la collection data
         for( let item of data ){
             // Modifier le DOM
