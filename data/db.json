@@ -11,6 +11,11 @@
       "content": "zrsdfsdfsdsd.  fdgsdghqsFXC qdvqsdv ",
       "author": "Julien",
       "id": 3
+    },
+    {
+      "title": "Titre depuis PostMan",
+      "content": "Contenu depuis Postman",
+      "id": 4
     }
   ],
   "comments": [],
