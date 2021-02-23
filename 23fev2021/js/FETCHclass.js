@@ -19,9 +19,16 @@ class FETCHclass {
     sendRequest(){
         // Renvoyer une promesse pour gérer une requête ASYNC
         return new Promise( ( resolve, reject ) => {
-            setTimeout(() => {
-                return resolve('azertyuiop');
-            }, 3000);
+            // Exécuter une requête HTTP en utilisant l'API Fetch
+            fetch(this.url, this.fetchOptions)
+            .then( response => {
+                // Vérifier l'état de la réponse
+                return !response.ok
+                ? reject(response)
+                : response.json();
+            })
+            .then( jsonData => resolve(jsonData) )
+            .catch( error => reject(error) );
         })
     }
 }

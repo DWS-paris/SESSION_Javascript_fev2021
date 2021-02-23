@@ -1,10 +1,12 @@
-// Instancier une classe
-let fetchRequest = new FETCHclass( 'http://localhost:3000/nav', 'GET' );
+document.addEventListener('DOMContentLoaded', async () => {
+    let fetchRequest = new FETCHclass( 'http://localhost:3000/nav', 'GET' );
 
-console.log( fetchRequest )
+    fetchRequest.sendRequest()
+    .then( jsonData => {
+        console.log(jsonData)
+    })
+    .catch( fetchError => {
+        console.log(fetchError)
+    })
 
-// Utilisation d'une fonction renvoyant une promesse
-fetchRequest.sendRequest()
-.then( data => {
-    console.log(data)
 })
