@@ -1,6 +1,10 @@
 /* 
 Reset
 */
+    *{
+        box-sizing: border-box;
+    }
+
     body {
         color: #606c76;
         font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -37,12 +41,25 @@ Header
         top: 0;
     }
 
+    .loading header{
+        top: -5rem;
+    }
+
     header{
         width: 100vw;
         left: 0;
     }
 
-    
+    header p {
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 900;
+        color: black;
+        margin: 0;
+        padding: 1rem 1rem 1rem 3rem;
+        position: relative;
+        z-index: 1001;
+    }
 /**/
 
 
@@ -55,12 +72,17 @@ Navigation
         left: 0;
     }
 
+    .loading nav{
+        left: -5rem;
+    }
+
     #mainNavigation{
         left: -100%;
-        width: 50vw;
+        width: 30%;
         height: 100%;
         display: flex;
         flex-direction: column;
+        background: white;
     }
 
     #mainNavigation ul{
@@ -109,11 +131,31 @@ Navigation
 /* 
 Main
 */
+    .loading main{
+        border-width: 0;
+    }
+
     main{
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
+    }
+
+    #mainColor{
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #ff5851;
+        width: 50%;
+        border: 3rem solid white;
+        border-right: 0;
+    }
+
+    .loading #mainColor{
+        width: 100%;
+        border-width: 0;
     }
 /**/

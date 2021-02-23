@@ -23,16 +23,47 @@ Fonctions
                 `;
             }
 
-            // Capter le clic sur le burger menu
-            document.querySelector('#burgerBtn').addEventListener('click', () => {
-                // Ajouter/Supprimer une classe open à la balise #mainNavigation
-                document.querySelector('#mainNavigation').classList.toggle('open');
-            })
+            // initialiser la navigation
+            initNavigation();
+
+            setTimeout(() => {
+                document.querySelector('body').classList.remove('loading')
+            }, 500);
         })
         .catch( fetchError => {
             console.log(fetchError);
         });
     };
+
+    const initNavigation = () => {
+        // Capter le clic sur le burger menu
+        document.querySelector('#burgerBtn').addEventListener('click', () => {
+            // Ajouter/Supprimer une classe open à la balise #mainNavigation
+            document.querySelector('#mainNavigation').classList.toggle('open');
+        })
+
+        // Capter le clic sur les balise à de la nav
+        for( let item of document.querySelectorAll('.navLink') ){
+            item.addEventListener('click', (event) => {
+                // Bloquer le comportement par défaut de la balise a
+                event.preventDefault();
+
+                // Charger le contenu de la page
+                loadPageContent( item.getAttribute('href') )
+            })
+        }
+    }
+
+    const loadPageContent = (content) => {
+        // Utiliser la classe FETCHclass pour récupérer les données
+        new FETCHclass(`http://localhost:3000/${content}`, 'GET').sendRequest()
+        .then( jsonData => {
+            console.log(jsonData)
+        })
+        .catch( fetchError => {
+            console.log(fetchError);
+        });
+    }
 //
 
 
