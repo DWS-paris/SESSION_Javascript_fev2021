@@ -1,0 +1,129 @@
+{
+  "nav": [
+    {
+      "id": 1,
+      "name": "Accueil",
+      "content": "home-page",
+      "color": "#ff5851"
+    },
+    {
+      "id": 2,
+      "name": "A propos",
+      "content": "about-page",
+      "color": "#f2c131"
+    },
+    {
+      "id": 3,
+      "name": "Portfolio",
+      "content": "portfolio-page",
+      "color": "#424a6b"
+    },
+    {
+      "id": 4,
+      "name": "Contatcs",
+      "content": "contacts-page",
+      "color": "#b49a85"
+    }
+  ],
+  "home-page": {
+    "section": "homePage",
+    "title": "Hello world",
+    "sub-title": "Julien Noyer <strong>Consultant en téchnologies de l'information, Concepteur pédagogique et Senior Lead Developer</strong>",
+    "color": "#ff5851",
+    "content": null
+  },
+  "about-page": {
+    "section": "aboutPage",
+    "title": "A propos",
+    "sub-title": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+    "color": "#f2c131",
+    "content": [
+      {
+        "id": 1,
+        "title": "Formation",
+        "sub-title": "Mon cursus scolaire",
+        "content": [
+          {
+            "id": 1,
+            "title": "Info Conseil",
+            "sub-title": "1997 - 1998 : Webdesign et Stratégie digitale",
+            "content": "<ul><li>Formation technique aux outils de la création graphique Print & Web</li><li>Formation Motion Design {Flash}</li><li>Assistant Formateur</li></ul>"
+          },
+          {
+            "id": 2,
+            "title": "CCIP Les Richardets",
+            "sub-title": "1997 - 1998 : CAP Sérigraphie",
+            "content": "<ul><li>Étude des étapes de la chaîne graphique</li><li>Formation aux techniques d'impressions</li><li>CAP Sérigraphie</li></ul>"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Expérience",
+        "sub-title": "Mon activité professionnelle",
+        "content": [
+          {
+            "id": 1,
+            "title": "Consultant en téchnologies de l'information",
+            "sub-title": "Depuis 2008 : DWSapp.io",
+            "content": "<p>Le design d'interface et les nouvelles technologies travaillent de concert, mes compétences sont issues de ces domaines. J'élabore des stratégies de communication nourries par mes recherches et mon expertise sur les canaux de diffusion on-line et ma passion pour l'objet design pour conseiller et accompagner les marques dans la définition et la mise en œuvre de leur stratégie digitale.</p>"
+          },
+          {
+            "id": 2,
+            "title": "CTO | Innovation Designer",
+            "sub-title": "2014 - 2015 : S.Y.N Social Design",
+            "content": "<p>Nous sommes des artisans créatifs, nous créons des contenus sur mesure directement issus de l'A.D.N de marque. Nous hybridons notre approche pour permettre à la marque de s'exprimer de manière innovante et créative en prolongeant l'expérience utilisateur à travers les différents points de contact.</p>"
+          }
+        ]
+      }
+    ]
+  },
+  "portfolio-page": {
+    "section": "portfolioPage",
+    "title": "Portfolio",
+    "sub-title": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "color": "#424a6b",
+    "content": [
+      {
+        "id": 1,
+        "title": "Arts Hebdo Médias",
+        "sub-title": "Site d'information dédié à l'art contemporain",
+        "link": "https://www.artshebdomedias.com",
+        "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+      },
+      {
+        "id": 2,
+        "title": "Toosla",
+        "sub-title": "Une location de voitures premiums 100% digitale, en toute liberté.",
+        "link": "https://www.toosla.com",
+        "content": "<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur.</p>"
+      }
+    ]
+  },
+  "contacts-page": {
+    "section": "contactsPage",
+    "title": "Contacts",
+    "sub-title": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
+    "color": "#b49a85",
+    "content": [
+      {
+        "id": 1,
+        "title": "Site web",
+        "link": "https://dwsapp.io",
+        "icone": "fas fa-globe"
+      },
+      {
+        "id": 2,
+        "title": "Linkedin",
+        "link": "https://www.linkedin.com/in/julien-n-21219b28/",
+        "icone": "fab fa-linkedin"
+      },
+      {
+        "id": 3,
+        "title": "Instagram",
+        "link": "https://www.instagram.com/digitalworkshop/",
+        "icone": "fab fa-instagram-square"
+      }
+    ]
+  }
+}
