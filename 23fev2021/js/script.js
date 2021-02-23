@@ -13,9 +13,12 @@ Fonctions
         .then( jsonData => {
             // Modifier le DOM
             for( let item of jsonData ){
-                document.querySelector(htmlTag).innerHTML += `
+                document.querySelector(`${htmlTag} ul`).innerHTML += `
                     <li>
-                        <a href="${item.content}" class="navLink">${item.name}</a>
+                        <a href="${item.content}" class="navLink">
+                            <span class="animAll" style="background:${item.color}"></span>
+                            <b>${item.name}</b>
+                        </a>
                     </li>
                 `;
             }

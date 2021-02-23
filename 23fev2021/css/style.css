@@ -9,6 +9,11 @@ Reset
         letter-spacing: .01em;
         line-height: 1.6;
     }
+
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
 /**/
 
 /* 
@@ -37,6 +42,14 @@ Header
         left: 0;
     }
 
+    
+/**/
+
+
+
+/* 
+Navigation
+*/
     nav{
         height: 100vh;
         left: 0;
@@ -45,6 +58,15 @@ Header
     #mainNavigation{
         left: -100%;
         width: 50vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mainNavigation ul{
+        margin: auto 4rem;
+        list-style: none;
+        padding: 0;
     }
 
     #mainNavigation.open{
@@ -54,9 +76,35 @@ Header
     #burgerBtn{
         position: relative;
         top: 50%;
+        z-index: 1001;
+    }
 
+    #mainNavigation li a{
+        position: relative;
+    }
+
+    #mainNavigation li span{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: red;
+    }
+
+    #mainNavigation li a:hover span, #mainNavigation li a.active span{
+        width: 100%;
+    }
+
+    #mainNavigation li b{
+        color: black;
+        font-weight: 900;
+        position: relative;
     }
 /**/
+
+
+
 
 /* 
 Main
