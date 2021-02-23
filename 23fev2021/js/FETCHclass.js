@@ -1,7 +1,6 @@
 // Définition d'une classe (ES^6)
 class FETCHclass {
-
-    // Ajouter un construreur pour injecter des valeurs dans la classe
+    // Ajouter un constructeur pour injecter des valeurs dans la classe
     constructor( url, requestType, bodyData = null ){
         this.url = url;
         this.requestType = requestType;

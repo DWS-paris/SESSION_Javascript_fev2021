@@ -1,0 +1,71 @@
+/* 
+Reset
+*/
+    body {
+        color: #606c76;
+        font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+        font-size: 1.6em;
+        font-weight: 300;
+        letter-spacing: .01em;
+        line-height: 1.6;
+    }
+/**/
+
+/* 
+Common
+*/
+    .animAll{
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+    }
+/**/
+
+/* 
+Header
+*/
+    header, nav, #mainNavigation{
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+    }
+
+    header{
+        width: 100vw;
+        left: 0;
+    }
+
+    nav{
+        height: 100vh;
+        left: 0;
+    }
+
+    #mainNavigation{
+        right: 100%;
+        width: 50vw;
+    }
+
+    #mainNavigation.open{
+        right: 0;
+    }
+
+    #burgerBtn{
+        position: relative;
+        top: 50%;
+
+    }
+/**/
+
+/* 
+Main
+*/
+    main{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+/**/
