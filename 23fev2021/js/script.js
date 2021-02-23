@@ -25,10 +25,6 @@ Fonctions
 
             // initialiser la navigation
             initNavigation();
-
-            setTimeout(() => {
-                document.querySelector('body').classList.remove('loading')
-            }, 500);
         })
         .catch( fetchError => {
             console.log(fetchError);
@@ -52,17 +48,49 @@ Fonctions
                 loadPageContent( item.getAttribute('href') )
             })
         }
+
+        // Charger le contenu de la page d'accueil
+        loadPageContent('home-page')
     }
 
     const loadPageContent = (content) => {
+        // Afficher le loading
+        document.querySelector('body').classList.add('loading')
+        document.querySelector('#mainNavigation').classList.remove('open')
+
         // Utiliser la classe FETCHclass pour récupérer les données
         new FETCHclass(`http://localhost:3000/${content}`, 'GET').sendRequest()
-        .then( jsonData => {
-            console.log(jsonData)
-        })
+        .then( jsonData => displayPage(jsonData))
         .catch( fetchError => {
             console.log(fetchError);
         });
+    }
+
+    const displayPage = (jsonData) => {
+        console.log(jsonData)
+
+        // Ajouter la classe de la page
+        document.querySelector('#mainContent').classList.toggle(jsonData.section)
+
+        // Vérifier la section à afficher
+        if( jsonData.section === "homePage" ){
+            document.querySelector('#mainContent').innerHTML = `
+                <div>
+                    <p id="siteTitle">${jsonData.title}</p>
+                    <h1>${jsonData["sub-title"]}</h1>
+                </div>
+            `;
+        }
+
+        setTimeout(() => {
+            // Masquer le loading
+            document.querySelector('body').classList.remove('loading')
+
+            // Afficher le contenu
+            setTimeout(() => {
+                document.querySelector('#mainContent').classList.add('display')
+            }, 500);
+        }, 500);
     }
 //
 
