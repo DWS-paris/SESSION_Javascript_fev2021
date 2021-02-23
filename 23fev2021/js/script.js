@@ -57,6 +57,7 @@ Fonctions
         // Afficher le loading
         document.querySelector('body').classList.add('loading')
         document.querySelector('#mainNavigation').classList.remove('open')
+        document.querySelector('#mainContent').classList.remove('display')
 
         // Utiliser la classe FETCHclass pour récupérer les données
         new FETCHclass(`http://localhost:3000/${content}`, 'GET').sendRequest()
@@ -70,7 +71,14 @@ Fonctions
         console.log(jsonData)
 
         // Ajouter la classe de la page
-        document.querySelector('#mainContent').classList.toggle(jsonData.section)
+        document.querySelector('#mainContent').classList.remove('homePage')
+        document.querySelector('#mainContent').classList.remove('aboutPage')
+        document.querySelector('#mainContent').classList.remove('portfolioPage')
+        document.querySelector('#mainContent').classList.remove('contactsPage')
+        document.querySelector('#mainContent').classList.add(jsonData.section);
+
+        // Appliquer la couleur de lapage
+        document.querySelector('#mainColor').style.background = jsonData.color
 
         // Vérifier la section à afficher
         if( jsonData.section === "homePage" ){
