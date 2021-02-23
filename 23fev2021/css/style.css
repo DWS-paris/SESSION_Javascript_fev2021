@@ -43,12 +43,12 @@ Header
     }
 
     #mainNavigation{
-        right: 100%;
+        left: -100%;
         width: 50vw;
     }
 
     #mainNavigation.open{
-        right: 0;
+        left: 0;
     }
 
     #burgerBtn{
