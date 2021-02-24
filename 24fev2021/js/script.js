@@ -83,7 +83,7 @@ Fonctions
             setTimeout(() => {
                 // Vérifier la section à afficher
                 if( jsonData.section === "homePage" ){
-                    document.querySelector('#mainContent').innerHTML = `
+                    document.querySelector('#overflowContent').innerHTML = `
                         <div>
                             <p id="siteTitle">${jsonData.title}</p>
                             <h1>${jsonData["sub-title"]}</h1>
@@ -92,7 +92,7 @@ Fonctions
                 }
                 else if( jsonData.section === "aboutPage" ){
                     // Afficher le titre de la page
-                    document.querySelector('#mainContent').innerHTML = `
+                    document.querySelector('#overflowContent').innerHTML = `
                         <div>
                             <h1>${jsonData.title}</h1>
                             <p>${jsonData["sub-title"]}</p>
@@ -102,7 +102,7 @@ Fonctions
                     // Afficher le contenu de la page
                     for( let item of jsonData.content ){
                         // Titre
-                        document.querySelector('#mainContent').innerHTML += `
+                        document.querySelector('#overflowContent').innerHTML += `
                             <div>
                                 <h2>${item.title} <span>${item["sub-title"]}</span></h2>
                             </div>
@@ -110,7 +110,7 @@ Fonctions
 
                         // Contenu
                         for( let body of item.content ){
-                            document.querySelector('#mainContent').innerHTML += `
+                            document.querySelector('#overflowContent').innerHTML += `
                                 <div>
                                     <h3>${body.title}</h3>
                                     <p>${body["sub-title"]}</p>
@@ -122,7 +122,7 @@ Fonctions
                 }
                 else if( jsonData.section === "portfolioPage" ){
                     // Afficher le titre de la page
-                    document.querySelector('#mainContent').innerHTML = `
+                    document.querySelector('#overflowContent').innerHTML = `
                         <div>
                             <h1>${jsonData.title}</h1>
                             <p>${jsonData["sub-title"]}</p>
@@ -132,7 +132,7 @@ Fonctions
                     // Afficher le contenu de la page
                     for( let item of jsonData.content ){
                         // Titre
-                        document.querySelector('#mainContent').innerHTML += `
+                        document.querySelector('#overflowContent').innerHTML += `
                             <div>
                                 <h2>${item.title}</h2>
                                 <p>${item["sub-title"]}</p>
@@ -143,7 +143,7 @@ Fonctions
                 }
                 else{
                         // Afficher le titre de la page
-                        document.querySelector('#mainContent').innerHTML = `
+                        document.querySelector('#overflowContent').innerHTML = `
                         <div>
                             <h1>${jsonData.title}</h1>
                             <p>${jsonData["sub-title"]}</p>
@@ -153,7 +153,7 @@ Fonctions
                         // Afficher le contenu de la page
                         for( let item of jsonData.content ){
                             // Titre
-                            document.querySelector('#mainContent').innerHTML += `
+                            document.querySelector('#overflowContent').innerHTML += `
                                 <div>
                                     <a href="${item.link}" target="_blank"><i class="${item.icone}"></i> ${item.title}</a>
                                 </div>
