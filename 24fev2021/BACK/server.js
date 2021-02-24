@@ -104,13 +104,7 @@ Définition du serveur
 
                 // Définir la route de la page d'accueil du backoffice
                 this.server.get('/', (req, res) => {
-                    // Récupérer la liste des pages dans la base de données
-                    connection.query('SELECT * FROM page', ( err, data ) => {
-                        // Rendre dans la réponse la vue de la page d'accueil
-                        return err
-                        ? res.render('index', { error: err, data: null })
-                        : res.render('index', { error: null, data: data });
-                    })
+                    res.render('index')
                 })
 
                 // Lancer le serveur

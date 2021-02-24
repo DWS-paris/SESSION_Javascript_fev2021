@@ -32,6 +32,10 @@ Common
         list-style: none;
     }
 
+    .flexBox li:not(:last-child){
+        margin-right: 2rem;
+    }
+
     .spaceBetween{
         -webkit-justify-content: space-between;
         -moz-justify-content: space-between;
