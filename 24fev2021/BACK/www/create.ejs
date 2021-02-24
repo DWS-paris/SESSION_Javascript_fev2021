@@ -5,7 +5,7 @@
     <h2>Page de création</h2>
 
     <% if( type === "page" ) { %>
-        <p>Créer une page</p>
+        <%- include('components/form-create-page') -%>
     <% } %>
 
     <% if( type === "portfolio" ) { %>
