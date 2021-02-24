@@ -1,0 +1,209 @@
+/* 
+Reset
+*/
+    *{
+        box-sizing: border-box;
+    }
+
+    body {
+        color: black;
+        font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+        font-size: 1.6em;
+        font-weight: 300;
+        letter-spacing: .01em;
+        line-height: 1.6;
+    }
+
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
+/**/
+
+/* 
+Common
+*/
+    .animAll{
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+    }
+/**/
+
+/* 
+Header
+*/
+    header, nav, #mainNavigation{
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+    }
+
+    .loading header{
+        top: -5rem;
+    }
+
+    header{
+        width: 100vw;
+        left: 0;
+    }
+
+    header p {
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 900;
+        margin: 0;
+        padding: 1rem 1rem 1rem 3rem;
+        position: relative;
+        z-index: 1001;
+    }
+/**/
+
+
+
+/* 
+Navigation
+*/
+    nav{
+        height: 100vh;
+        left: 0;
+    }
+
+    .loading nav{
+        left: -5rem;
+    }
+
+    #mainNavigation{
+        left: -100%;
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+    }
+
+    #mainNavigation ul{
+        margin: auto 4rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    #mainNavigation.open{
+        left: 0;
+    }
+
+    #burgerBtn{
+        position: relative;
+        top: 50%;
+        z-index: 1001;
+    }
+
+    #mainNavigation li a{
+        position: relative;
+    }
+
+    #mainNavigation li span{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: red;
+    }
+
+    #mainNavigation li a:hover span, #mainNavigation li a.active span{
+        width: 100%;
+    }
+
+    #mainNavigation li b{
+        font-weight: 900;
+        position: relative;
+    }
+/**/
+
+
+
+
+/* 
+Main
+*/
+    .loading main{
+        border-width: 0;
+    }
+
+    main{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #mainContent{
+        position: relative;
+        z-index: 1001;
+        padding: 10rem 6rem 6rem 6rem;
+        line-height: 1;
+        height: 100%;
+        opacity: 0;
+    }
+    
+    #mainContent.display{
+        opacity: 1;
+        padding-top: 6rem;
+    }
+
+
+    #mainColor{
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #ff5851;
+        width: 50%;
+        border: 3rem solid white;
+        border-right: 0;
+    }
+
+    .loading #mainColor{
+        width: 100%;
+        border-width: 0;
+    }
+/**/
+
+
+/* 
+Home page
+*/
+    #siteTitle{
+        font-size: 5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    h1{
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+
+    h1 strong{
+        font-weight: 100;
+        margin-top: .5rem;
+        display: block;
+        font-size: .8rem;
+    }
+
+    .homePage{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .homePage div{
+        margin: auto;
+        width: 40%;
+    }
+/**/
