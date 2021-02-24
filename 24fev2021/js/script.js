@@ -70,20 +70,10 @@ Fonctions
     const displayPage = (jsonData) => {
         console.log(jsonData)
 
-        
-
         // Appliquer la couleur de lapage
         document.querySelector('#mainColor').style.background = jsonData.color
 
-        // Vérifier la section à afficher
-        if( jsonData.section === "homePage" ){
-            document.querySelector('#mainContent').innerHTML = `
-                <div>
-                    <p id="siteTitle">${jsonData.title}</p>
-                    <h1>${jsonData["sub-title"]}</h1>
-                </div>
-            `;
-        }
+        
 
         setTimeout(() => {
             // Masquer le loading
@@ -91,6 +81,46 @@ Fonctions
 
             // Afficher le contenu
             setTimeout(() => {
+                // Vérifier la section à afficher
+                if( jsonData.section === "homePage" ){
+                    document.querySelector('#mainContent').innerHTML = `
+                        <div>
+                            <p id="siteTitle">${jsonData.title}</p>
+                            <h1>${jsonData["sub-title"]}</h1>
+                        </div>
+                    `;
+                }
+                else if( jsonData.section === "aboutPage" ){
+                    // Afficher le titre de la page
+                    document.querySelector('#mainContent').innerHTML = `
+                        <div>
+                            <h1>${jsonData.title}</h1>
+                            <p>${jsonData["sub-title"]}</p>
+                        </div>
+                    `;
+
+                    // Afficher le contenu de la page
+                    for( let item of jsonData.content ){
+                        // Titre
+                        document.querySelector('#mainContent').innerHTML += `
+                            <div>
+                                <h2>${item.title} <span>${item["sub-title"]}</span></h2>
+                            </div>
+                        `;
+
+                        // Contenu
+                        for( let body of item.content ){
+                            document.querySelector('#mainContent').innerHTML += `
+                                <div>
+                                    <h3>${body.title}</h3>
+                                    <p>${body["sub-title"]}</p>
+                                    ${body.content}
+                                </div>
+                            `;
+                        }
+                    }
+                }
+
                 // Ajouter la classe de la page
                 document.querySelector('#mainContent').classList.remove('homePage')
                 document.querySelector('#mainContent').classList.remove('aboutPage')
