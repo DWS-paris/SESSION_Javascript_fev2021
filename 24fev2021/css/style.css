@@ -203,12 +203,12 @@ Home page
         font-size: .8rem;
     }
 
-    .homePage{
+    .homePage #overflowContent{
         display: flex;
         flex-direction: column;
     }
 
-    .homePage div{
+    .homePage #overflowContent div{
         margin: auto;
         width: 40%;
     }
