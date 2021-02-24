@@ -3,6 +3,15 @@
 
 <main>
     <h2>Accueil !</h2>
+
+    <h3>Liste des pages</h3>
+    <ul>
+        <% for( let item of data ) {%>
+            <li>
+                <%- item.title%>
+            </li>
+        <% } %>
+    </ul>
 </main>
 
 <!-- Charger le footer -->

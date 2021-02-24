@@ -42,6 +42,17 @@ Définition du serveur
             // Connecter la base de données MYsql
             this.MYSQL.connectDb()
             .then( connection => {
+                // Définir la route API pour récupérer la liste des pages
+                this.server.get('/api/page', (req, res) => {
+                    // Récupérer la liste des pages dans la base de données
+                    connection.query('SELECT * FROM page', ( err, data ) => {
+                        // Renvoyer le flux JSON dans la route de l'API
+                        return err
+                        ? res.json({ error: err, data: null })
+                        : res.json({ error: null, data: data });
+                    })
+                })
+
                 // Définir la route pour ajouter du contenu dans la base de données
                 this.server.get('/create/:type', (req, res) => {
                     // Rendre dans la réponse la vue de la page d'accueil
@@ -52,15 +63,10 @@ Définition du serveur
                 this.server.get('/', (req, res) => {
                     // Récupérer la liste des pages dans la base de données
                     connection.query('SELECT * FROM page', ( err, data ) => {
-                        if( err ){ 
-                            console.log(data)
-                            // Rendre dans la réponse la vue de la page d'accueil
-                            return res.render('index', { error: err, data: null })
-                        }
-                        else{
-                            // Rendre dans la réponse la vue de la page d'accueil
-                            return res.render('index', { error: null, data: data })
-                        }
+                        // Rendre dans la réponse la vue de la page d'accueil
+                        return err
+                        ? res.render('index', { error: err, data: null })
+                        : res.render('index', { error: null, data: data });
                     })
                 })
 
