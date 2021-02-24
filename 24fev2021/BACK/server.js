@@ -77,6 +77,17 @@ Définition du serveur
                 })
 
 
+                // Définir la route pour supprimer du contenu de la base de données
+                this.server.post('/delete/:type', (req, res) => {
+                    // Ajouter les données dans la base de données
+                    connection.query(`DELETE from ${req.params.type} WHERE id=${req.body.id}`, (err, data) => {
+                        return err
+                        ? res.redirect(`/`)
+                        : res.redirect(`/`);
+                    })
+                })
+
+
 
 
 
