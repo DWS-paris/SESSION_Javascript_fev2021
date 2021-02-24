@@ -1,6 +1,7 @@
 /* 
 Imports
 */
+    require('dotenv').config(); //=> https://www.npmjs.com/package/dotenv
     const express = require('express'); //=> https://www.npmjs.com/package/express
     const bodyParser = require('body-parser'); //=> https://www.npmjs.com/package/body-parser
     const path = require('path'); //=> https://www.npmjs.com/package/path
@@ -17,7 +18,7 @@ Définition du serveur
         constructor(){
             // Injecter des propriété dans la classe
             this.server = express();
-            this.port = 8769;
+            this.port = process.env.PORT;
             this.MYSQL = new MYSQLClass;
         }
 
