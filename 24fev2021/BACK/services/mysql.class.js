@@ -12,8 +12,8 @@ Définition
         constructor(){
             // Injecter des propriété dans la classe
             this.connection = mysql.createConnection({
-                host: 'http://localhost',
-                port: 8888,
+                host: 'localhost',
+                port: 8889,
                 user: 'root',
                 password: 'root',
                 database: 'wf3_pwa'
@@ -27,7 +27,7 @@ Définition
                 this.connection.connect( (error) => {
                     // Tester la connection
                     return error
-                    ? reject(err)
+                    ? reject(error)
                     : resolve( this.connection )
                 })
             })

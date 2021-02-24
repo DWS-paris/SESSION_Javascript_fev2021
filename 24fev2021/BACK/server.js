@@ -4,6 +4,9 @@ Imports
     const express = require('express'); //=> https://www.npmjs.com/package/express
     const bodyParser = require('body-parser'); //=> https://www.npmjs.com/package/body-parser
     const path = require('path'); //=> https://www.npmjs.com/package/path
+
+    // Importer le service MySql
+    const MYSQLClass = require('./services/mysql.class')
 //
 
 
@@ -14,7 +17,8 @@ Définition du serveur
         constructor(){
             // Injecter des propriété dans la classe
             this.server = express();
-            this.port = 8769
+            this.port = 8769;
+            this.MYSQL = new MYSQLClass;
         }
 
         init(){
@@ -34,20 +38,27 @@ Définition du serveur
         }
 
         config(){
-            // Définir la route pour ajouter du contenu dans la base de données
-            this.server.get('/create/:type', (req, res) => {
-                // Rendre dans la réponse la vue de la page d'accueil
-                return res.render('create', { type: req.params.type })
-            })
+            // Connecter la base de données MYsql
+            this.MYSQL.connectDb()
+            .then( connection => {
+                // Définir la route pour ajouter du contenu dans la base de données
+                this.server.get('/create/:type', (req, res) => {
+                    // Rendre dans la réponse la vue de la page d'accueil
+                    return res.render('create', { type: req.params.type })
+                })
 
-            // Définir la route de la page d'accueil du backoffice
-            this.server.get('/', (req, res) => {
-                // Rendre dans la réponse la vue de la page d'accueil
-                return res.render('index')
-            })
+                // Définir la route de la page d'accueil du backoffice
+                this.server.get('/', (req, res) => {
+                    // Rendre dans la réponse la vue de la page d'accueil
+                    return res.render('index')
+                })
 
-            // Lancer le serveur
-            this.launch();
+                // Lancer le serveur
+                this.launch();
+            })
+            .catch( connectionError => {
+                console.log(`MYsql connection error: ${connectionError}`)
+            })
         }
 
         launch(){
