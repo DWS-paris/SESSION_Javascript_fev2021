@@ -57,6 +57,16 @@ Définition du serveur
 
 
 
+                // Définir la route pour afficher la liste des pages et ajouter une page
+                this.server.get('/page', (req, res) => {
+                    // Récupérer la liste des pages dans la base de données
+                    connection.query('SELECT * FROM page', ( err, data ) => {
+                        // Rendre dans la réponse la vue de la page d'accueil
+                        return err
+                        ? res.render('page', { error: err, data: null })
+                        : res.render('page', { error: null, data: data });
+                    })
+                })
 
 
 
@@ -71,8 +81,8 @@ Définition du serveur
                     // Ajouter les données dans la base de données
                     connection.query(`INSERT INTO ${req.params.type} SET ?`, req.body, (err, data) => {
                         return err
-                        ? res.redirect(`/create/${req.params.type}`)
-                        : res.redirect(`/create/${req.params.type}`);
+                        ? res.redirect(`/${req.params.type}`)
+                        : res.redirect(`/${req.params.type}`);
                     })
                 })
 
@@ -82,8 +92,8 @@ Définition du serveur
                     // Ajouter les données dans la base de données
                     connection.query(`DELETE from ${req.params.type} WHERE id=${req.body.id}`, (err, data) => {
                         return err
-                        ? res.redirect(`/`)
-                        : res.redirect(`/`);
+                        ? res.redirect(`/${req.params.type}`)
+                        : res.redirect(`/${req.params.type}`);
                     })
                 })
 

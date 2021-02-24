@@ -10,4 +10,41 @@ Reset
         margin: auto;
         padding: 2rem;
     }
+
+    blockquote, dl, figure, form, ol, p, pre, table, ul, .button, button, dd, dt, li {
+        margin-bottom: 0;
+    }
+
+    section:not(:last-child){
+        margin-bottom: 6rem;
+    }
+/**/
+
+/* 
+Common
+*/
+    .flexBox{
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: flex;
+        list-style: none;
+    }
+
+    .spaceBetween{
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -o-justify-content: space-between;
+        -ms-justify-content: space-between;
+        justify-content: space-between;
+    }
+
+    .alignCenter{
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        -o-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+    }
 /**/
