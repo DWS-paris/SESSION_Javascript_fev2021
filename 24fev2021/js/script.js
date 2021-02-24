@@ -141,6 +141,25 @@ Fonctions
                         `;
                     }
                 }
+                else{
+                        // Afficher le titre de la page
+                        document.querySelector('#mainContent').innerHTML = `
+                        <div>
+                            <h1>${jsonData.title}</h1>
+                            <p>${jsonData["sub-title"]}</p>
+                        </div>
+                        `;
+
+                        // Afficher le contenu de la page
+                        for( let item of jsonData.content ){
+                            // Titre
+                            document.querySelector('#mainContent').innerHTML += `
+                                <div>
+                                    <a href="${item.link}" target="_blank"><i class="${item.icone}"></i> ${item.title}</a>
+                                </div>
+                            `;
+                        }
+                }
 
                 // Ajouter la classe de la page
                 document.querySelector('#mainContent').classList.remove('homePage')
