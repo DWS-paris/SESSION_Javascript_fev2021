@@ -53,11 +53,33 @@ Définition du serveur
                     })
                 })
 
+
+
+
+
+
+
+
+
                 // Définir la route pour ajouter du contenu dans la base de données
                 this.server.get('/create/:type', (req, res) => {
                     // Rendre dans la réponse la vue de la page d'accueil
-                    return res.render('create', { type: req.params.type })
+                    return res.render('create', { type: req.params.type, err: null, data: null })
                 })
+
+                this.server.post('/create/:type', (req, res) => {
+                    // Ajouter les données dans la base de données
+                    connection.query(`INSERT INTO ${req.params.type} SET ?`, req.body, (err, data) => {
+                        return err
+                        ? res.redirect(`/create/${req.params.type}`)
+                        : res.redirect(`/create/${req.params.type}`);
+                    })
+                })
+
+
+
+
+
 
                 // Définir la route de la page d'accueil du backoffice
                 this.server.get('/', (req, res) => {

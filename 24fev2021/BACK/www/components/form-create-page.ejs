@@ -1,7 +1,7 @@
 <h2>Ajouter une page</h2>
 <p>Tous les champs sont obligatoires</p>
 
-<form action="">
+<form action="/create/page" method="POST">
     <label for="title">Titre</label>
     <input type="text" name="title" minlength="2" required>
 
@@ -10,6 +10,10 @@
 
     <label for="color">Couleur</label>
     <input type="text" name="color" minlength="2" required>
+
+    <label for="section">Section</label>
+    <input type="text" name="section" minlength="2" required>
+
 
     <button type="submit">Ajouter</button>
 </form>
