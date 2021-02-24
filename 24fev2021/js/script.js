@@ -1,6 +1,7 @@
 /* 
 Déclarations
 */
+    let activePage = 'home-page';
 //
 
 
@@ -8,6 +9,8 @@ Déclarations
 Fonctions
 */
     const displayNav = (htmlTag) => {
+        console.log(activePage)
+
         // Utiliser la classe FETCHclass pour récupérer les données
         new FETCHclass('http://localhost:3000/nav', 'GET').sendRequest()
         .then( jsonData => {
@@ -15,7 +18,7 @@ Fonctions
             for( let item of jsonData ){
                 document.querySelector(`${htmlTag} ul`).innerHTML += `
                     <li>
-                        <a href="${item.content}" class="navLink">
+                        <a href="${item.content}" class="${ activePage === item.content ? 'navLink active' : 'navLink' }">
                             <span class="animAll" style="background:${item.color}"></span>
                             <b>${item.name}</b>
                         </a>
@@ -46,11 +49,21 @@ Fonctions
 
                 // Charger le contenu de la page
                 loadPageContent( item.getAttribute('href') )
+
+                // Modifier la valeur de la page active
+                activePage = item.getAttribute('href');
+
+                // Stocker la valeur de la page en cours en local storage
+                localStorage.setItem('active-page', activePage)
+
+                // Modifier le lien active
+                document.querySelector('.navLink.active').classList.remove('active');
+                item.classList.add('active');
             })
         }
 
         // Charger le contenu de la page d'accueil
-        loadPageContent('home-page')
+        loadPageContent(activePage)
     }
 
     const loadPageContent = (content) => {
@@ -179,6 +192,12 @@ Fonctions
 Attendre le chargement du DOM
 */
     document.addEventListener('DOMContentLoaded', async () => {
+        // Vérifier les données en local storage
+        if( localStorage.getItem('active-page') !== null ){
+            // Modifier la valeur de la page active
+            activePage = localStorage.getItem('active-page');
+        }
+
         // Afficher la navigation
         displayNav('#mainNavigation');
     });
