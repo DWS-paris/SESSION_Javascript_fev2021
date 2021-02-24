@@ -1,0 +1,21 @@
+<!-- Charger le header -->
+<%- include('statics/header') -%>
+
+<main>
+    <h2>Page de création</h2>
+
+    <% if( type === "page" ) { %>
+        <p>Créer une page</p>
+    <% } %>
+
+    <% if( type === "portfolio" ) { %>
+        <p>Créer une portfolio</p>
+    <% } %>
+
+    <% if( type === "contact" ) { %>
+        <p>Créer une contact</p>
+    <% } %>
+</main>
+
+<!-- Charger le footer -->
+<%- include('statics/footer') -%>
