@@ -120,6 +120,27 @@ Fonctions
                         }
                     }
                 }
+                else if( jsonData.section === "portfolioPage" ){
+                    // Afficher le titre de la page
+                    document.querySelector('#mainContent').innerHTML = `
+                        <div>
+                            <h1>${jsonData.title}</h1>
+                            <p>${jsonData["sub-title"]}</p>
+                        </div>
+                    `;
+
+                    // Afficher le contenu de la page
+                    for( let item of jsonData.content ){
+                        // Titre
+                        document.querySelector('#mainContent').innerHTML += `
+                            <div>
+                                <h2>${item.title}</h2>
+                                <p>${item["sub-title"]}</p>
+                                <a href="${item.link}" target="_blank">${item.link}</a>
+                            </div>
+                        `;
+                    }
+                }
 
                 // Ajouter la classe de la page
                 document.querySelector('#mainContent').classList.remove('homePage')
