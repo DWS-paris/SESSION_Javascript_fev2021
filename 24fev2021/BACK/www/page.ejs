@@ -9,7 +9,7 @@
 
     <section>
         <h3>Ajouter une page</h3>
-        <%- include('components/form-create-page') -%>
+        <%- include('components/form-page', { action: 'POST' }) -%>
     </section>
 
     <section>
@@ -18,10 +18,14 @@
             <article>
                 <ul class="flexBox spaceBetween alignCenter">
                     <li><%- item.title %></li>
-                    <li>
+                    <li class="flexBox spaceBetween alignCenter">
                         <form action="/delete/page" method="POST">
                             <input type="text" name="id" value="<%- item.id%>" hidden required>
                             <button type="submit"><i class="far fa-trash-alt"></i></button>
+                        </form>
+
+                        <form action="/update/page/<%- item.id%>" method="GET">
+                            <button type="submit"><i class="fas fa-edit"></i></button>
                         </form>
                     </li>
                 </ul>

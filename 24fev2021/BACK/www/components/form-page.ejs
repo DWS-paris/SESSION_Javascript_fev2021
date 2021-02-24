@@ -1,0 +1,45 @@
+
+<% if( action === 'POST' ) { %>
+    <p>Tous les champs sont obligatoires pour la création d'une page</p>
+
+    <form action="/create/page" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required>
+    
+        <label for="sub-title">Sous-titre</label>
+        <input type="text" name="sub-title" minlength="2" required>
+    
+        <label for="color">Couleur</label>
+        <input type="text" name="color" minlength="2" required>
+    
+        <label for="section">Section</label>
+        <input type="text" name="section" minlength="2" required>
+    
+    
+        <button type="submit">Ajouter</button>
+    </form>
+<% } %>
+
+<% if( action === 'PUT' ) { %>
+    <h2>Modifier la page</h2>
+
+    <p>Tous les champs sont obligatoires pour la modification d'une page</p>
+
+    <form action="/update/page/<%- data.id %>" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required value="<%- data.title %>">
+    
+        <label for="sub-title">Sous-titre</label>
+        <input type="text" name="sub-title" minlength="2" required value="<%- data['sub-title'] %>">
+    
+        <label for="color">Couleur</label>
+        <input type="text" name="color" minlength="2" required value="<%- data.color %>">
+    
+        <label for="section">Section</label>
+        <input type="text" name="section" minlength="2" required value="<%- data.section %>">
+    
+    
+        <button type="submit">Mettre à jour</button>
+    </form>
+<% } %>
+

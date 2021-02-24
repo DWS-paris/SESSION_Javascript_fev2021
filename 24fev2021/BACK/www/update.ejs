@@ -3,7 +3,7 @@
 
 <main>
     <% if( type === "page" ) { %>
-        <%- include('components/form-create-page') -%>
+        <%- include('components/form-page', { action: 'PUT' }) -%>
     <% } %>
 
     <% if( type === "portfolio" ) { %>

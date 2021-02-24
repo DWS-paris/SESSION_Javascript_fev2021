@@ -68,15 +68,6 @@ Définition du serveur
                     })
                 })
 
-
-
-
-                // Définir la route pour ajouter du contenu dans la base de données
-                this.server.get('/create/:type', (req, res) => {
-                    // Rendre dans la réponse la vue de la page d'accueil
-                    return res.render('create', { type: req.params.type, err: null, data: null })
-                })
-
                 this.server.post('/create/:type', (req, res) => {
                     // Ajouter les données dans la base de données
                     connection.query(`INSERT INTO ${req.params.type} SET ?`, req.body, (err, data) => {
@@ -85,6 +76,36 @@ Définition du serveur
                         : res.redirect(`/${req.params.type}`);
                     })
                 })
+
+                // Définir la route pour ajouter du contenu dans la base de données
+                this.server.post('/update/:type/:id', (req, res) => {
+                    console.log('post /update/:type/:id')
+                    // Ajouter les données dans la base de données
+                    connection.query(`
+                        UPDATE  ${req.params.type}
+                        SET title="${req.body.title}"
+                        WHERE id=${req.params.id}
+                    `, (err, data) => {
+
+                        console.log(err, data)
+                        return err
+                        ? res.redirect(`/update/${req.params.type}/${req.params.id}`)
+                        : res.redirect(`/update/${req.params.type}/${req.params.id}`);
+                    })
+                })
+
+                // Définir la route pour ajouter du contenu dans la base de données
+                this.server.get('/update/:type/:id', (req, res) => {
+                    console.log('get /update/:type/:id')
+                    // Ajouter les données dans la base de données
+                    connection.query(`SELECT * FROM ${req.params.type} WHERE id=${req.params.id}`, (err, data) => {
+                        return err
+                        ? res.render('update', { type: req.params.type, err: err, data: null })
+                        : res.render('update', { type: req.params.type, err: null, data: data[0] });
+                    })
+                })
+
+                
 
 
                 // Définir la route pour supprimer du contenu de la base de données
