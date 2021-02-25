@@ -79,15 +79,12 @@ Définition du serveur
 
                 // Définir la route pour ajouter du contenu dans la base de données
                 this.server.post('/update/:type/:id', (req, res) => {
-                    console.log('post /update/:type/:id')
                     // Ajouter les données dans la base de données
                     connection.query(`
                         UPDATE  ${req.params.type}
                         SET title="${req.body.title}"
                         WHERE id=${req.params.id}
                     `, (err, data) => {
-
-                        console.log(err, data)
                         return err
                         ? res.redirect(`/update/${req.params.type}/${req.params.id}`)
                         : res.redirect(`/update/${req.params.type}/${req.params.id}`);
@@ -96,7 +93,6 @@ Définition du serveur
 
                 // Définir la route pour ajouter du contenu dans la base de données
                 this.server.get('/update/:type/:id', (req, res) => {
-                    console.log('get /update/:type/:id')
                     // Ajouter les données dans la base de données
                     connection.query(`SELECT * FROM ${req.params.type} WHERE id=${req.params.id}`, (err, data) => {
                         return err
