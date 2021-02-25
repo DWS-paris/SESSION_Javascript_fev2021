@@ -87,6 +87,9 @@ Définition du serveur
                             })
                         })
                     }
+                    else{
+                        return res.json( { err: "Endpoint unknow", data: null } );
+                    }
                 })
 
 
