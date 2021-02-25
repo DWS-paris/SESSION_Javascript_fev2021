@@ -43,15 +43,56 @@ Définition du serveur
             this.MYSQL.connectDb()
             .then( connection => {
                 // Définir la route API pour récupérer la liste des pages
-                this.server.get('/api/page', (req, res) => {
-                    // Récupérer la liste des pages dans la base de données
-                    connection.query('SELECT * FROM page', ( err, data ) => {
-                        // Renvoyer le flux JSON dans la route de l'API
-                        return err
-                        ? res.json({ error: err, data: null })
-                        : res.json({ error: null, data: data });
-                    })
+                this.server.get('/api/page/:endpoint', async (req, res) => {
+                    // Vérifier le endpoint pour renvoyer les bonnes données dans la route
+                    if( req.params.endpoint === 'home' ){
+                        // Récupérer le contenu de la page home
+                        connection.query('SELECT * FROM page WHERE section="homePage"', (err, data) => {
+                            return err
+                            ? res.json({ err: err, data: null })
+                            : res.json({ err: null, data: data })
+                        })
+                    }
+                    else if( req.params.endpoint === 'about' ){
+                        // Récupérer le contenu de la page about
+                        connection.query('SELECT * FROM page WHERE section="aboutPage"', (err, mainContent) => {
+                            // Récupérer les éxpériences scolaires
+                            connection.query('SELECT * FROM experience WHERE category="school"', (err, school) => {
+                                // Récupérer les éxpériences pro
+                                connection.query('SELECT * FROM experience WHERE category="professional"', (err, professional) => {
+                                    // Renvoyer les données dans la route
+                                    return res.json({ err: null, data: { main: mainContent, school, professional  } })
+                                })
+                                
+                            })
+                        })
+                    }
+                    else if( req.params.endpoint === 'portfolio' ){
+                        // Récupérer le contenu de la page portfolio
+                        connection.query('SELECT * FROM page WHERE section="portfolioPage"', (err, mainContent) => {
+                            // Récupérer les projet
+                            connection.query('SELECT * FROM portfolio', (err, projects) => {
+                                // Renvoyer les données dans la route
+                                return res.json({ err: null, data: { main: mainContent, projects  } })
+                            })
+                        })
+                    }
+                    else if( req.params.endpoint === 'contact' ){
+                        // Récupérer le contenu de la page portfolio
+                        connection.query('SELECT * FROM page WHERE section="contactsPage"', (err, mainContent) => {
+                            // Récupérer les projet
+                            connection.query('SELECT * FROM contact', (err, contacts) => {
+                                // Renvoyer les données dans la route
+                                return res.json({ err: null, data: { main: mainContent, contacts  } })
+                            })
+                        })
+                    }
                 })
+
+
+
+
+
 
                 // Définir la route pour afficher la page permettant de gérer les contacts
                 this.server.get('/contact', (req, res) => {
