@@ -75,6 +75,17 @@ Définition du serveur
                     })
                 })
 
+                // Définir la route pour afficher la page permettant de gérer les expériences
+                this.server.get('/experience', (req, res) => {
+                    // Récupérer la liste des pages dans la base de données
+                    connection.query('SELECT * FROM experience', ( err, data ) => {
+                        // Rendre dans la réponse la vue de la page d'accueil
+                        return err
+                        ? res.render('experience', { error: err, data: null })
+                        : res.render('experience', { error: null, data: data });
+                    })
+                })
+
 
 
 

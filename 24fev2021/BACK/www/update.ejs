@@ -13,6 +13,10 @@
     <% if( type === "contact" ) { %>
         <%- include('components/form-contacts', { action: 'PUT' }) -%>
     <% } %>
+
+    <% if( type === "experience" ) { %>
+        <%- include('components/form-experience', { action: 'PUT' }) -%>
+    <% } %>
 </main>
 
 <!-- Charger le footer -->

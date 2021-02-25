@@ -1,0 +1,42 @@
+
+<% if( action === 'POST' ) { %>
+    <p>Tous les champs sont obligatoires pour la création d'une expérience</p>
+
+    <form action="/create/experience" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required>
+    
+        <label for="sub-title">Sous-titre</label>
+        <input type="text" name="sub-title" minlength="2" required>
+    
+        <label for="content">Contenu</label>
+        <textarea name="content" required minlength="5"></textarea>
+
+        <label for="category">Catégorie</label>
+        <input type="text" name="category" minlength="2" required>
+    
+        <button type="submit">Ajouter</button>
+    </form>
+<% } %>
+
+<% if( action === 'PUT' ) { %>
+    <h2>Modifier l'expérience</h2>
+    <p>Tous les champs sont obligatoires pour la modification d'une expérience</p>
+
+    <form action="/update/experience/<%- data.id %>" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required value="<%- data.title %>">
+    
+        <label for="sub-title">Sous-titre</label>
+        <input type="text" name="sub-title" minlength="2" required value="<%- data['sub-title'] %>">
+    
+        <label for="content">Contenu</label>
+        <textarea name="content" required minlength="5"><%- data.content %></textarea>
+
+        <label for="category">Catégorie</label>
+        <input type="text" name="category" minlength="2" required value="<%- data.category %>">
+    
+        <button type="submit">Mettre à jour</button>
+    </form>
+<% } %>
+

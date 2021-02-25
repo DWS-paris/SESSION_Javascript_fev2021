@@ -3,29 +3,28 @@
 
 <main>
     <section>
-        <h2>Gestion des contacts</h2>
+        <h2>Gestion de expériences</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat harum culpa laboriosam veritatis error vero quisquam reiciendis adipisci accusamus facilis. Perferendis possimus itaque, ad neque ratione architecto ducimus ex dolorum.</p>
     </section>
 
     <section>
-        <h3>Ajouter un contact</h3>
-        <%- include('components/form-contacts', { action: 'POST' }) -%>
+        <h3>Ajouter une expérience</h3>
+        <%- include('components/form-experience', { action: 'POST' }) -%>
     </section>
 
     <section>
-        <h3>Liste des contacts</h3>
-
+        <h3>Liste des expériences</h3>
         <% for( let item of data ) {%>
             <article>
                 <ul class="flexBox spaceBetween alignCenter">
-                    <li><a href="<%- item.link %>" target="_blank"><i class="<%- item.icon %>"></i> <%- item.title %></a></li>
+                    <li><%- item.title %></li>
                     <li class="flexBox spaceBetween alignCenter">
-                        <form action="/delete/contact" method="POST">
+                        <form action="/delete/experience" method="POST">
                             <input type="text" name="id" value="<%- item.id%>" hidden required>
                             <button type="submit"><i class="far fa-trash-alt"></i></button>
                         </form>
 
-                        <form action="/update/contact/<%- item.id%>" method="GET">
+                        <form action="/update/experience/<%- item.id%>" method="GET">
                             <button type="submit"><i class="fas fa-edit"></i></button>
                         </form>
                     </li>
