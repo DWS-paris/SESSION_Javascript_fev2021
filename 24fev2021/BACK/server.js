@@ -42,164 +42,17 @@ Définition du serveur
             // Connecter la base de données MYsql
             this.MYSQL.connectDb()
             .then( connection => {
-                // Définir la route API pour récupérer la liste des pages
-                this.server.get('/api/page/:endpoint', async (req, res) => {
-                    // Vérifier le endpoint pour renvoyer les bonnes données dans la route
-                    if( req.params.endpoint === 'home' ){
-                        // Récupérer le contenu de la page home
-                        connection.query('SELECT * FROM page WHERE section="homePage"', (err, data) => {
-                            return err
-                            ? res.json({ err: err, data: null })
-                            : res.json({ err: null, data: data })
-                        })
-                    }
-                    else if( req.params.endpoint === 'about' ){
-                        // Récupérer le contenu de la page about
-                        connection.query('SELECT * FROM page WHERE section="aboutPage"', (err, mainContent) => {
-                            // Récupérer les éxpériences scolaires
-                            connection.query('SELECT * FROM experience WHERE category="school"', (err, school) => {
-                                // Récupérer les éxpériences pro
-                                connection.query('SELECT * FROM experience WHERE category="professional"', (err, professional) => {
-                                    // Renvoyer les données dans la route
-                                    return res.json({ err: null, data: { main: mainContent, school, professional  } })
-                                })
-                                
-                            })
-                        })
-                    }
-                    else if( req.params.endpoint === 'portfolio' ){
-                        // Récupérer le contenu de la page portfolio
-                        connection.query('SELECT * FROM page WHERE section="portfolioPage"', (err, mainContent) => {
-                            // Récupérer les projet
-                            connection.query('SELECT * FROM portfolio', (err, projects) => {
-                                // Renvoyer les données dans la route
-                                return res.json({ err: null, data: { main: mainContent, projects  } })
-                            })
-                        })
-                    }
-                    else if( req.params.endpoint === 'contact' ){
-                        // Récupérer le contenu de la page portfolio
-                        connection.query('SELECT * FROM page WHERE section="contactsPage"', (err, mainContent) => {
-                            // Récupérer les projet
-                            connection.query('SELECT * FROM contact', (err, contacts) => {
-                                // Renvoyer les données dans la route
-                                return res.json({ err: null, data: { main: mainContent, contacts  } })
-                            })
-                        })
-                    }
-                    else{
-                        return res.json( { err: "Endpoint unknow", data: null } );
-                    }
-                })
 
+                // Importer le router API
+                const ApiRouterClass = require('./routers/api.router');
+                const apiRouter = new ApiRouterClass( { connection } );
+                this.server.use('/api', apiRouter.init())
 
+                // Importer le router Backoffice
+                const BackRouterClass = require('./routers/backoffice.router');
+                const backRouter = new BackRouterClass( { connection } );
+                this.server.use('/', backRouter.init())
 
-
-
-
-                // Définir la route pour afficher la page permettant de gérer les contacts
-                this.server.get('/contact', (req, res) => {
-                    // Récupérer la liste des pages dans la base de données
-                    connection.query('SELECT * FROM contact', ( err, data ) => {
-                        // Rendre dans la réponse la vue de la page d'accueil
-                        return err
-                        ? res.render('contact', { error: err, data: null })
-                        : res.render('contact', { error: null, data: data });
-                    })
-                })
-
-                // Définir la route pour afficher la page permettant de gérer le portfolio
-                this.server.get('/portfolio', (req, res) => {
-                    // Récupérer la liste des pages dans la base de données
-                    connection.query('SELECT * FROM portfolio', ( err, data ) => {
-                        // Rendre dans la réponse la vue de la page d'accueil
-                        return err
-                        ? res.render('portfolio', { error: err, data: null })
-                        : res.render('portfolio', { error: null, data: data });
-                    })
-                })
-
-                // Définir la route pour afficher la page permettant de gérer les expériences
-                this.server.get('/experience', (req, res) => {
-                    // Récupérer la liste des pages dans la base de données
-                    connection.query('SELECT * FROM experience', ( err, data ) => {
-                        // Rendre dans la réponse la vue de la page d'accueil
-                        return err
-                        ? res.render('experience', { error: err, data: null })
-                        : res.render('experience', { error: null, data: data });
-                    })
-                })
-
-
-
-
-
-                // Définir la route pour afficher la liste des pages et ajouter une page
-                this.server.get('/page', (req, res) => {
-                    // Récupérer la liste des pages dans la base de données
-                    connection.query('SELECT * FROM page', ( err, data ) => {
-                        // Rendre dans la réponse la vue de la page d'accueil
-                        return err
-                        ? res.render('page', { error: err, data: null })
-                        : res.render('page', { error: null, data: data });
-                    })
-                })
-
-                this.server.post('/create/:type', (req, res) => {
-                    // Ajouter les données dans la base de données
-                    connection.query(`INSERT INTO ${req.params.type} SET ?`, req.body, (err, data) => {
-                        return err
-                        ? res.redirect(`/${req.params.type}`)
-                        : res.redirect(`/${req.params.type}`);
-                    })
-                })
-
-                // Définir la route pour ajouter du contenu dans la base de données
-                this.server.post('/update/:type/:id', (req, res) => {
-                    // Ajouter les données dans la base de données
-                    connection.query(`
-                        UPDATE  ${req.params.type}
-                        SET title="${req.body.title}"
-                        WHERE id=${req.params.id}
-                    `, (err, data) => {
-                        return err
-                        ? res.redirect(`/update/${req.params.type}/${req.params.id}`)
-                        : res.redirect(`/update/${req.params.type}/${req.params.id}`);
-                    })
-                })
-
-                // Définir la route pour ajouter du contenu dans la base de données
-                this.server.get('/update/:type/:id', (req, res) => {
-                    // Ajouter les données dans la base de données
-                    connection.query(`SELECT * FROM ${req.params.type} WHERE id=${req.params.id}`, (err, data) => {
-                        return err
-                        ? res.render('update', { type: req.params.type, err: err, data: null })
-                        : res.render('update', { type: req.params.type, err: null, data: data[0] });
-                    })
-                })
-
-                
-
-
-                // Définir la route pour supprimer du contenu de la base de données
-                this.server.post('/delete/:type', (req, res) => {
-                    // Ajouter les données dans la base de données
-                    connection.query(`DELETE from ${req.params.type} WHERE id=${req.body.id}`, (err, data) => {
-                        return err
-                        ? res.redirect(`/${req.params.type}`)
-                        : res.redirect(`/${req.params.type}`);
-                    })
-                })
-
-
-
-
-
-
-                // Définir la route de la page d'accueil du backoffice
-                this.server.get('/', (req, res) => {
-                    res.render('index')
-                })
 
                 // Lancer le serveur
                 this.launch();
