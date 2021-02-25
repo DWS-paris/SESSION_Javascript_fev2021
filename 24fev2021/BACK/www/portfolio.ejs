@@ -1,0 +1,39 @@
+<!-- Charger le header -->
+<%- include('statics/header') -%>
+
+<main>
+    <section>
+        <h2>Gestion du portfolio</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat harum culpa laboriosam veritatis error vero quisquam reiciendis adipisci accusamus facilis. Perferendis possimus itaque, ad neque ratione architecto ducimus ex dolorum.</p>
+    </section>
+
+    <section>
+        <h3>Ajouter un projet</h3>
+        <%- include('components/form-portfolio', { action: 'POST' }) -%>
+    </section>
+
+    <section>
+        <h3>Liste des projets</h3>
+
+        <% for( let item of data ) {%>
+            <article>
+                <ul class="flexBox spaceBetween alignCenter">
+                    <li><%- item.title %></li>
+                    <li class="flexBox spaceBetween alignCenter">
+                        <form action="/delete/portfolio" method="POST">
+                            <input type="text" name="id" value="<%- item.id%>" hidden required>
+                            <button type="submit"><i class="far fa-trash-alt"></i></button>
+                        </form>
+
+                        <form action="/update/portfolio/<%- item.id%>" method="GET">
+                            <button type="submit"><i class="fas fa-edit"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </article>
+        <% } %>
+    </section>
+</main>
+
+<!-- Charger le footer -->
+<%- include('statics/footer') -%>

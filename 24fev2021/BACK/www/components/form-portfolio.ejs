@@ -1,0 +1,43 @@
+
+<% if( action === 'POST' ) { %>
+    <p>Tous les champs sont obligatoires pour la création d'un projet</p>
+
+    <form action="/create/portfolio" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required>
+    
+        <label for="sub-title">Sous-titre</label>
+        <input type="text" name="sub-title" minlength="2" required>
+    
+        <label for="link">Lien</label>
+        <input type="text" name="link" minlength="2" required>
+    
+        <label for="content">Contenu</label>
+        <textarea name="content" required minlength="5"></textarea>
+    
+        <button type="submit">Ajouter</button>
+    </form>
+<% } %>
+
+<% if( action === 'PUT' ) { %>
+    <h2>Modifier la page</h2>
+
+    <p>Tous les champs sont obligatoires pour la modification d'un projet</p>
+
+    <form action="/update/portfolio/<%- data.id %>" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required value="<%- data.title %>">
+    
+        <label for="sub-title">Sous-titre</label>
+        <input type="text" name="sub-title" minlength="2" required value="<%- data['sub-title'] %>">
+    
+        <label for="link">Lien</label>
+        <input type="text" name="link" minlength="2" required value="<%- data.link %>">
+    
+        <label for="content">Contenu</label>
+        <textarea name="content" required minlength="5"><%- data.content %></textarea>
+    
+        <button type="submit">Mettre à jour</button>
+    </form>
+<% } %>
+

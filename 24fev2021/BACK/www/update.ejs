@@ -7,7 +7,7 @@
     <% } %>
 
     <% if( type === "portfolio" ) { %>
-        <p>Créer une portfolio</p>
+        <%- include('components/form-portfolio', { action: 'PUT' }) -%>
     <% } %>
 
     <% if( type === "contact" ) { %>

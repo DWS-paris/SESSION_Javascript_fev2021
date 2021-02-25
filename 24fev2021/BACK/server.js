@@ -64,6 +64,17 @@ Définition du serveur
                     })
                 })
 
+                // Définir la route pour afficher la page permettant de gérer le portfolio
+                this.server.get('/portfolio', (req, res) => {
+                    // Récupérer la liste des pages dans la base de données
+                    connection.query('SELECT * FROM portfolio', ( err, data ) => {
+                        // Rendre dans la réponse la vue de la page d'accueil
+                        return err
+                        ? res.render('portfolio', { error: err, data: null })
+                        : res.render('portfolio', { error: null, data: data });
+                    })
+                })
+
 
 
 
