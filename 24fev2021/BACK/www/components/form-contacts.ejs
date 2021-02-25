@@ -1,0 +1,37 @@
+
+<% if( action === 'POST' ) { %>
+    <p>Tous les champs sont obligatoires pour la création d'une page</p>
+
+    <form action="/create/contact" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required>
+    
+        <label for="link">Lien</label>
+        <input type="text" name="link" minlength="2" required>
+    
+        <label for="icon">Icone</label>
+        <input type="text" name="icon" minlength="2" required>
+    
+        <button type="submit">Ajouter</button>
+    </form>
+<% } %>
+
+<% if( action === 'PUT' ) { %>
+    <h2>Modifier le contact</h2>
+
+    <p>Tous les champs sont obligatoires pour la modification du contact</p>
+
+    <form action="/update/contact/<%- data.id %>" method="POST">
+        <label for="title">Titre</label>
+        <input type="text" name="title" minlength="2" required value="<%- data.title %>">
+    
+        <label for="link">Lien</label>
+        <input type="text" name="link" minlength="2" required value="<%- data.link %>">
+    
+        <label for="icon">Icone</label>
+        <input type="text" name="icon" minlength="2" required value="<%- data.icon %>">
+    
+        <button type="submit">Mettre à jour</button>
+    </form>
+<% } %>
+

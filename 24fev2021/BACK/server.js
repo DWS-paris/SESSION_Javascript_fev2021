@@ -53,6 +53,17 @@ Définition du serveur
                     })
                 })
 
+                // Définir la route pour afficher la page permettant de gérer les contacts
+                this.server.get('/contact', (req, res) => {
+                    // Récupérer la liste des pages dans la base de données
+                    connection.query('SELECT * FROM contact', ( err, data ) => {
+                        // Rendre dans la réponse la vue de la page d'accueil
+                        return err
+                        ? res.render('contact', { error: err, data: null })
+                        : res.render('contact', { error: null, data: data });
+                    })
+                })
+
 
 
 

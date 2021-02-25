@@ -11,7 +11,7 @@
     <% } %>
 
     <% if( type === "contact" ) { %>
-        <p>Créer une contact</p>
+        <%- include('components/form-contacts', { action: 'PUT' }) -%>
     <% } %>
 </main>
 
