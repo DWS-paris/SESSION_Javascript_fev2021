@@ -19,9 +19,10 @@ Routes definition
 
         routes(){
             // Définir la route API pour récupérer la liste des pages
-            this.router.get('/page/:endpoint', async (req, res) => getContent(this.connection, req, res))
+            this.router.get('/page/:endpoint', async (req, res) => getContent(this.connection, req, res));
 
-            this.router.get('/navigation', async (req, res) => getNav(this.connection, req, res))
+            // Définit une route API pour récupérer les liens de la navigation
+            this.router.get('/navigation', async (req, res) => getNav(this.connection, req, res));
         }
 
         init(){

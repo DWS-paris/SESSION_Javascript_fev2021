@@ -37,9 +37,6 @@ Routes definition
 
             // Définir la route de la page d'accueil du backoffice
             this.router.get('/', (req, res) => { res.render('index') })
-
-            // Rediriger les routes inconnues
-            this.router.get('/*', (req, res) => { res.redirect('/') })
         }
 
         init(){

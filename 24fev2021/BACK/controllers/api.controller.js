@@ -53,7 +53,7 @@ Controller definition
     const getNav = ( connection, req, res ) => {
         // Récupérer le contenu de la page portfolio
         connection.query('SELECT * FROM navigation', (err, mainContent) => {
-            return res.json({ err: null, data: { main: mainContent } })
+            return res.json({ err: null, data: mainContent })
         })
     }
 //

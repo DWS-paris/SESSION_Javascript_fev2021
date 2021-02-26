@@ -5,6 +5,7 @@ Imports
     const express = require('express'); //=> https://www.npmjs.com/package/express
     const bodyParser = require('body-parser'); //=> https://www.npmjs.com/package/body-parser
     const path = require('path'); //=> https://www.npmjs.com/package/path
+    const favicon = require('serve-favicon') //=> https://www.npmjs.com/package/serve-favicon'
 
     // Importer le service MySql
     const MYSQLClass = require('./services/mysql.class')
@@ -23,6 +24,22 @@ Définition du serveur
         }
 
         init(){
+            // Définir les CORS via un middleware
+            this.server.use( (req, res, next) => {
+                // Define allowed origins
+                const allowedOrigins = process.env.ALLOWED_ORIGINS.split(', ');
+                const origin = req.headers.origin;
+
+                // Setup CORS
+                if(allowedOrigins.indexOf(origin) > -1){ res.setHeader('Access-Control-Allow-Origin', origin)}
+                res.header('Access-Control-Allow-Credentials', 'true');
+                res.header('Access-Control-Allow-Methods', ['GET', 'PUT', 'POST', 'DELETE']);
+                res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+                // Use next() function to continu routing
+                next();
+            });
+
             // Définir le moteur de rendu
             this.server.set( 'view engine', 'ejs' );
 
@@ -33,6 +50,9 @@ Définition du serveur
             // Configurer Body Parser
             this.server.use(bodyParser.json({limit: '20mb'}));
             this.server.use(bodyParser.urlencoded({ extended: true }));
+
+            // Setup favicon
+            this.server.use(favicon(path.join(__dirname, 'www', 'ico.ico')))
 
             // Lancer la configuration des routes
             this.config();
