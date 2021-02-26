@@ -5,7 +5,7 @@ Imports
     const express = require('express');
 
     // Importer les fonctions du controlleur
-    const { getContent } = require('../controllers/api.controller');
+    const { getContent, getNav } = require('../controllers/api.controller');
 //
 
 /*  
@@ -20,6 +20,8 @@ Routes definition
         routes(){
             // Définir la route API pour récupérer la liste des pages
             this.router.get('/page/:endpoint', async (req, res) => getContent(this.connection, req, res))
+
+            this.router.get('/navigation', async (req, res) => getNav(this.connection, req, res))
         }
 
         init(){

@@ -49,12 +49,20 @@ Controller definition
                 return res.json( { err: "Endpoint unknow", data: null } );
             }
     }
+
+    const getNav = ( connection, req, res ) => {
+        // Récupérer le contenu de la page portfolio
+        connection.query('SELECT * FROM navigation', (err, mainContent) => {
+            return res.json({ err: null, data: { main: mainContent } })
+        })
+    }
 //
 
 /*
 Export
 */
     module.exports = {
-        getContent
+        getContent,
+        getNav
     };
 //
