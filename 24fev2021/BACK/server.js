@@ -35,7 +35,7 @@ Définition du serveur
             this.server.use(bodyParser.urlencoded({ extended: true }));
 
             // Lancer la configuration des routes
-            this.config()
+            this.config();
         }
 
         config(){
