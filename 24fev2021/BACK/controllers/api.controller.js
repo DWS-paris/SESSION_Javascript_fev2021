@@ -8,7 +8,7 @@ Controller definition
                 connection.query('SELECT * FROM page WHERE section="homePage"', (err, data) => {
                     return err
                     ? res.json({ err: err, data: null })
-                    : res.json({ err: null, data: data })
+                    : res.json({ err: null, data: { main: data[0] } })
                 })
             }
             else if( req.params.endpoint === 'about' ){
@@ -19,7 +19,7 @@ Controller definition
                         // Récupérer les éxpériences pro
                         connection.query('SELECT * FROM experience WHERE category="professional"', (err, professional) => {
                             // Renvoyer les données dans la route
-                            return res.json({ err: null, data: { main: mainContent, school, professional  } })
+                            return res.json({ err: null, data: { main: mainContent[0], school, professional  } })
                         })
                         
                     })
@@ -31,7 +31,7 @@ Controller definition
                     // Récupérer les projet
                     connection.query('SELECT * FROM portfolio', (err, projects) => {
                         // Renvoyer les données dans la route
-                        return res.json({ err: null, data: { main: mainContent, projects  } })
+                        return res.json({ err: null, data: { main: mainContent[0], projects  } })
                     })
                 })
             }
@@ -41,7 +41,7 @@ Controller definition
                     // Récupérer les projet
                     connection.query('SELECT * FROM contact', (err, contacts) => {
                         // Renvoyer les données dans la route
-                        return res.json({ err: null, data: { main: mainContent, contacts  } })
+                        return res.json({ err: null, data: { main: mainContent[0], contacts  } })
                     })
                 })
             }
